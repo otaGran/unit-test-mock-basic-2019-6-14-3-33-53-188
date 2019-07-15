@@ -40,13 +40,10 @@ public class CashRegisterTest {
 
 
         //when
-        Purchase purchase = new Purchase(items);
+        FakePurchase purchase = new FakePurchase(items);
         cashRegister.process(purchase);
-        //then
 
-//        Throwable exception  = Assertions.assertThrows(UnsupportedOperationException.class, () -> {
-//            cashRegister.process(purchase);;
-//        });
+        //then
         assertEquals(purchase.asString(),printer.getTestString());
     }
 
