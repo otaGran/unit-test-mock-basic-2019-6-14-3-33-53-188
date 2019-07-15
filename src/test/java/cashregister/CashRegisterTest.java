@@ -16,10 +16,10 @@ public class CashRegisterTest {
         Printer printer = new Printer();
         CashRegister cashRegister = new CashRegister(printer);
         Item[] items = {new Item("pen",1.5),new Item("water",0.6)};
-        Purchase purchase = new Purchase(items);
+
 
         //when
-
+        Purchase purchase = new Purchase(items);
         //then
 
         Throwable exception  = Assertions.assertThrows(UnsupportedOperationException.class, () -> {
