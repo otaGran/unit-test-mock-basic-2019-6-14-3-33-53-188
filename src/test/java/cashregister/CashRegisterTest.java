@@ -13,19 +13,20 @@ public class CashRegisterTest {
     @Test
     public void should_print_the_real_purchase_when_call_process() {
         //given
-        Printer printer = new Printer();
+        FakePrinter printer = new FakePrinter();
         CashRegister cashRegister = new CashRegister(printer);
         Item[] items = {new Item("pen",1.5),new Item("water",0.6)};
 
 
         //when
         Purchase purchase = new Purchase(items);
+        cashRegister.process(purchase);
         //then
 
-        Throwable exception  = Assertions.assertThrows(UnsupportedOperationException.class, () -> {
-            cashRegister.process(purchase);;
-        });
-        assertEquals("Not Implemented",exception.getMessage());
+//        Throwable exception  = Assertions.assertThrows(UnsupportedOperationException.class, () -> {
+//            cashRegister.process(purchase);;
+//        });
+        assertEquals(true,printer.isPrinted());
 
 
     }
