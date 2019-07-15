@@ -4,7 +4,7 @@ package cashregister;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class CashRegisterTest {
@@ -26,7 +26,7 @@ public class CashRegisterTest {
 //        Throwable exception  = Assertions.assertThrows(UnsupportedOperationException.class, () -> {
 //            cashRegister.process(purchase);;
 //        });
-        assertEquals(true,printer.isPrinted());
+        assertTrue(printer.isPrinted());
 
 
     }
@@ -34,8 +34,20 @@ public class CashRegisterTest {
     @Test
     public void should_print_the_stub_purchase_when_call_process() {
         //given
+        FakePrinter printer = new FakePrinter();
+        CashRegister cashRegister = new CashRegister(printer);
+        Item[] items = {new Item("pen",1.5),new Item("water",0.6)};
+
+
         //when
+        Purchase purchase = new Purchase(items);
+        cashRegister.process(purchase);
         //then
+
+//        Throwable exception  = Assertions.assertThrows(UnsupportedOperationException.class, () -> {
+//            cashRegister.process(purchase);;
+//        });
+        assertEquals(purchase.asString(),printer.getTestString());
     }
 
     @Test
